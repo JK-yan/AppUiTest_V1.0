@@ -1,6 +1,7 @@
 import Utils.FileUtils;
 import Utils.JsonUtils;
 import com.google.gson.annotations.SerializedName;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class Test {
     public String name;
     public int age;
 
-
+    private static Logger logger = Logger.getLogger(Test.class);
 
 
     public static void main(String[] args){
@@ -27,7 +28,7 @@ public class Test {
             System.out.println(".................");
             System.out.println(json.get(1));
             for(int i=0;i<json.size();i++){
-                gsontest aaa = JsonUtils.ReadJson(json.get(i), gsontest.class);
+                gsontest aaa = JsonUtils.ReadGson(json.get(i), gsontest.class);
                 System.out.println(aaa);
             }
 
