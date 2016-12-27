@@ -1,4 +1,4 @@
-package FileUtils;
+package Utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -18,12 +18,18 @@ public class TimeUtils {
         System.out.println(dateFormat);
         return hehe;
     }
-    public void  gess(){
+
+public String GetLocalTime(String timeformat){
+//        String timeformat="yyyy/MM/dd HH:mm:ss";
+        Date now = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat(timeformat);
+        String hehe = dateFormat.format(now);
+        System.out.println(hehe);
+        System.out.println(dateFormat);
+        return hehe;
+    }
+    public static void  GetTime(){
         Calendar c = Calendar.getInstance();//可以对每个时间域单独修改
-
-
-
-
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int date = c.get(Calendar.DATE);
