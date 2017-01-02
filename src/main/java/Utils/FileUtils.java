@@ -17,7 +17,7 @@ public class FileUtils {
         FileInputStream fis = null;
         InputStreamReader isr = null;
         BufferedReader read=null;
-        String line=null;
+        String line;
         List<String> allLines=new ArrayList();
         try {
             fis=new FileInputStream(Path(filename));

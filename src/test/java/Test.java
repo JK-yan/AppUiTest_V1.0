@@ -32,6 +32,7 @@ public class Test {
 //        System.out.println(aa.getValue("spring").getValue("datasource").getValue("url"));
 //        System.out.println(YamlUtils.LoadallgetValue("spring","application","cruncher"));
 //        System.out.println(YamlUtils.Loadallgetvalue("spring","application","cruncher"));
-        System.out.println(YamlUtils.Loadallgetvalue(1,"spring","application","name"));
+        System.out.println(YamlUtils.Loadallgetvalue("s",1,"spring","application","name"));
+
     }
 }
