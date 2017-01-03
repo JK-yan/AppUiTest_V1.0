@@ -1,4 +1,3 @@
-import Utils.YamlUtils;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -22,17 +21,21 @@ public class Test {
     //public String get(String key){
     //    return obj.get(key).toString();
     //}
-
+    private static String a = "androiddriver";
     public static void main(String[] args){
 
-        //getValue("spring","datasource","driverClassName");
-        //System.out.println(getValue("spring"));
-        //Object aa=YamlUtils.load();
-        //System.out.println(aa.toString());
-//        System.out.println(aa.getValue("spring").getValue("datasource").getValue("url"));
-//        System.out.println(YamlUtils.LoadallgetValue("spring","application","cruncher"));
-//        System.out.println(YamlUtils.Loadallgetvalue("spring","application","cruncher"));
-        System.out.println(YamlUtils.Loadallgetvalue("s",1,"spring","application","name"));
+
+        switch (Test.a){
+            case "androiddriver":
+                System.out.println(a);
+                break;
+            case "asd":
+                System.out.println("sda");
+                break;
+            default:
+                System.out.println("默认");
+                break;
+        }
 
     }
 }
