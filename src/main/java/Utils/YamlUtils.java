@@ -22,9 +22,10 @@ import java.util.List;
 public class YamlUtils {
     private static Logger logger = Logger.getLogger(YamlUtils.class);
 
-    public static Object Load(String filename){
+
+    public static Object Load(String filepath,String filename){
         Yaml yaml = new Yaml();
-        File f=new File(FileUtils.Path(filename));
+        File f=new File(FileUtils.Path(filepath,filename));
 
         //读入文件
         Object result= null;
@@ -39,18 +40,18 @@ public class YamlUtils {
 
     }
 
-    public static Object LoadgetValue(String filename,String ...te){
+    public static Object LoadgetValue(String filepath,String filename,String ...te){
 
-        LinkedHashMap aa= (LinkedHashMap) Load(filename);
+        LinkedHashMap aa= (LinkedHashMap) Load(filepath,filename);
         for (int i=0;i<te.length-1;i++){
             aa = (LinkedHashMap) aa.get(te[i]);
         }
         aa.get(te[te.length-1]);
         return  aa.get(te[te.length-1]);
     }
-    public static List Loadall(String filename){
+    public static List Loadall(String filepath,String filename){
         Yaml yaml = new Yaml();
-        File f = new File(FileUtils.Path(filename));
+        File f = new File(FileUtils.Path(filepath,filename));
         Iterable<Object> result = null;
         //Object object = null;
         List list =new ArrayList();
@@ -71,8 +72,8 @@ public class YamlUtils {
 
         return list;
     }
-    public static Object Loadallgetvalue(String filename,int a,String ...te){
-        LinkedHashMap aa= (LinkedHashMap) Loadall(filename).get(a);
+    public static Object Loadallgetvalue(String filepath,String filename,int a,String ...te){
+        LinkedHashMap aa= (LinkedHashMap) Loadall(filepath,filename).get(a);
         for (int i=0;i<te.length-1;i++){
             aa = (LinkedHashMap) aa.get(te[i]);
         }

@@ -20,7 +20,7 @@ public class FileUtilsTest {
 
     @Test
     public void path() throws Exception {
-        System.out.println(FileUtils.Path("/src/main/resourcestest.yaml"));
+
     }
 
     @Test
