@@ -1,6 +1,7 @@
 package Utils;
 
 import org.apache.log4j.Logger;
+import org.testng.annotations.Test;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
@@ -22,11 +23,12 @@ import java.util.List;
 public class YamlUtils {
     private static Logger logger = Logger.getLogger(YamlUtils.class);
 
-
+@Test
     public static Object Load(String filepath,String filename){
         Yaml yaml = new Yaml();
-        File f=new File(FileUtils.Path(filepath,filename));
-
+        File f=new File(filepath,filename);
+//        String f = filepath+"\\"+filename;
+System.out.println(f);
         //读入文件
         Object result= null;
         try {

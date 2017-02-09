@@ -20,11 +20,17 @@ public class YamlUtilsTest {
 
     @Test
     public void load() throws Exception {
+        String filepath = "E:\\Code\\AppUiTest_V1.0\\src\\main\\java\\conf";
+        String filename = "base.yaml";
+        YamlUtils.Load(filepath,filename);
 
     }
 
     @Test
     public void loadgetValue() throws Exception {
+        String filepath = "E:\\Code\\AppUiTest_V1.0\\src\\main\\java\\conf";
+        String filename = "base.yaml";
+        YamlUtils.LoadgetValue(filepath,filename);
 
     }
 

@@ -1,6 +1,7 @@
 package Utils;
 
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -25,5 +26,59 @@ public static MobileElement AndroidElementWait(WebDriver driver, By by){
 
     return element;
 }
+    /**
+     * This Method for swipe up
+     *
+     * @author Young
+     * @param driver
+     * @param during
+     */
+    public void swipeToUp(AndroidDriver driver, int during) {
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        driver.swipe(width / 2, height * 3 / 4, width / 2, height / 4, during);
+        // wait for page loading
+    }
 
+    /**
+     * This Method for swipe down
+     *
+     * @author Young
+     * @param driver
+     * @param during
+     */
+    public void swipeToDown(AndroidDriver driver, int during) {
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        driver.swipe(width / 2, height / 4, width / 2, height * 3 / 4, during);
+        // wait for page loading
+    }
+
+    /**
+     * This Method for swipe Left
+     *
+     * @author Young
+     * @param driver
+     * @param during
+     */
+    public void swipeToLeft(AndroidDriver driver, int during) {
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        driver.swipe(width * 3 / 4, height / 2, width / 4, height / 2, during);
+        // wait for page loading
+    }
+
+    /**
+     * This Method for swipe Right
+     *
+     * @author Young
+     * @param driver
+     * @param during
+     */
+    public void swipeToRight(AndroidDriver driver, int during) {
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        driver.swipe(width / 4, height / 2, width * 3 / 4, height / 2, during);
+        // wait for page loading
+    }
 }

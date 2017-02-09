@@ -1,4 +1,9 @@
 import com.google.gson.annotations.SerializedName;
+import org.yaml.snakeyaml.Yaml;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 /**
  * Created by jackiezero on 2016/12/26.
@@ -22,20 +27,15 @@ public class Test {
     //    return obj.get(key).toString();
     //}
     private static String a = "androiddriver";
-    public static void main(String[] args){
+    public static void main(String[] args) throws FileNotFoundException {
 
 
-        switch (Test.a){
-            case "androiddriver":
-                System.out.println(a);
-                break;
-            case "asd":
-                System.out.println("sda");
-                break;
-            default:
-                System.out.println("默认");
-                break;
-        }
+        Yaml yaml = new Yaml();
+        File f=new File("E:\\Code\\AppUiTest_V1.0\\src\\main\\java\\conf\\base.yaml");
+        //读入文件
+        Object result= yaml.load(new FileInputStream(f));
+        System.out.println(result.getClass());
+        System.out.println( result);
 
     }
 }
