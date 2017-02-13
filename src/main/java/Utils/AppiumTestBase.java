@@ -15,7 +15,11 @@ import java.net.URL;
  * Created by jackiezero on 2017/1/3.
  */
 public class AppiumTestBase {
-    public   static AppiumDriver driver;
+
+//        protected AndroidDriver driver;
+        protected AppiumDriver driver;
+
+//    protected
 //    AppiumUtils el = new AppiumUtils();
 /**
  * @ initialization初始化APPIUM
@@ -24,21 +28,24 @@ public class AppiumTestBase {
  * @ appPackage
  * @ appActivity（启动）
  * */
-    public static void initialization(String filepath,String filename,String platform,String appName) throws MalformedURLException {
+    protected   void initialization(String filepath,String filename,String platform,String appName) throws MalformedURLException {
+
         File classRootPath=new File(System.getProperty("user.dir"));
         File appDir=new File(classRootPath,"Driver");
         File app =new File(appDir,appName);
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         switch (platform){
             case "AndroidDriver":
+//                AndroidDriver driver;
                 desiredCapabilities.setCapability("deviceName",YamlUtils.LoadgetValue(filepath,filename,"androidCapability","deviceName"));
                 desiredCapabilities.setCapability("platformVersion", YamlUtils.LoadgetValue(filepath,filename,"androidCapability","platformVersion"));
 //                desiredCapabilities.setCapability("app", app.getAbsoluteFile());
                 desiredCapabilities.setCapability("appPackage", YamlUtils.LoadgetValue(filepath,filename,"androidCapability","appPackage"));
                 desiredCapabilities.setCapability("appActivity", YamlUtils.LoadgetValue(filepath,filename,"androidCapability","appActivity"));
 //                desiredCapabilities.setCapability("clearSystemFiles", true);
-                driver = new AndroidDriver<AndroidElement>(new URL("http://127.0.0.1:4723/wd/hub"), desiredCapabilities);
-
+                driver =  new AndroidDriver<AndroidElement>(new URL("http://127.0.0.1:4723/wd/hub"), desiredCapabilities);
+//                driver.findElement("-android uiautomator","");
+//                driver.findElementsByAccessibilityId()
                 break;
             case "IOSDriver":
                 desiredCapabilities.setCapability("deviceName","Android Emulator");
@@ -47,6 +54,7 @@ public class AppiumTestBase {
                 desiredCapabilities.setCapability("appPackage", "com.fulihui.www.information");
                 desiredCapabilities.setCapability("appActivity", ".SplashActivity");
                 driver = new IOSDriver<IOSElement>(new URL("http://127.0.0.1:4723/wd/hub"), desiredCapabilities);
+//                driver.findElementByIosUIAutomation()
                 break;
             case "WebDriver":
                 break;

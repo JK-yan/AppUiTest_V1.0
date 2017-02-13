@@ -1,9 +1,11 @@
 package Utils;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -12,12 +14,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class AppiumUtils extends AppiumTestBase{
 
-public static MobileElement AndroidElementWait(WebDriver driver, By by){
+public static MobileElement androidElementWait(WebDriver driver, By by){
     /**
      * An expectation for checking that an element is present on the DOM of a page and visible.
      * Visibility means that the element is not only displayed but also has a height and width that is
      * greater than 0.
-     *
+     *@author jackiezero
      * @param locator used to find the element
      * @return the WebElement once it is located and visible
      */
@@ -26,6 +28,14 @@ public static MobileElement AndroidElementWait(WebDriver driver, By by){
 
     return element;
 }
+
+
+    public boolean isElementExist(AppiumDriver<WebElement> driver , String by , String use) {
+
+//           MobileElement element = (MobileElement) driver.findElements(by,use);
+        return driver.findElements(by,use).isEmpty();
+    }
+
     /**
      * This Method for swipe up
      *
@@ -33,7 +43,7 @@ public static MobileElement AndroidElementWait(WebDriver driver, By by){
      * @param driver
      * @param during
      */
-    public void swipeToUp(AndroidDriver driver, int during) {
+    public static void swipeToUp(AndroidDriver driver, int during) {
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
         driver.swipe(width / 2, height * 3 / 4, width / 2, height / 4, during);
@@ -47,7 +57,7 @@ public static MobileElement AndroidElementWait(WebDriver driver, By by){
      * @param driver
      * @param during
      */
-    public void swipeToDown(AndroidDriver driver, int during) {
+    public static void swipeToDown(AndroidDriver driver, int during) {
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
         driver.swipe(width / 2, height / 4, width / 2, height * 3 / 4, during);
@@ -61,7 +71,7 @@ public static MobileElement AndroidElementWait(WebDriver driver, By by){
      * @param driver
      * @param during
      */
-    public void swipeToLeft(AndroidDriver driver, int during) {
+    public static void swipeToLeft(AndroidDriver driver, int during) {
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
         driver.swipe(width * 3 / 4, height / 2, width / 4, height / 2, during);
@@ -75,7 +85,7 @@ public static MobileElement AndroidElementWait(WebDriver driver, By by){
      * @param driver
      * @param during
      */
-    public void swipeToRight(AndroidDriver driver, int during) {
+    public static void swipeToRight(AndroidDriver driver, int during) {
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
         driver.swipe(width / 4, height / 2, width * 3 / 4, height / 2, during);

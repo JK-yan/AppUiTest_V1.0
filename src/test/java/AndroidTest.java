@@ -1,4 +1,5 @@
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.After;
 import org.junit.Before;
@@ -17,7 +18,7 @@ import static org.junit.Assert.assertEquals;
  * Created by admin on 2016/12/29.
  */
 public class AndroidTest {
-    private AppiumDriver<WebElement> driver;
+    private AppiumDriver driver;
 
     @Before
     public void setUp() throws Exception {
@@ -30,7 +31,7 @@ public class AndroidTest {
         capabilities.setCapability("app", app.getAbsolutePath());
         capabilities.setCapability("appPackage", "io.appium.android.apis");
         capabilities.setCapability("appActivity", ".ApiDemos");
-        driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+        driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
     }
 
     @After
@@ -48,5 +49,6 @@ public class AndroidTest {
         el.click();
         List<WebElement> els = driver.findElementsByClassName("android.widget.TextView");
         assertEquals("Activity", els.get(2).getText());
+//        MobileElement element = driver.findElementByAndroidUIAutomator();
     }
 }
