@@ -15,10 +15,10 @@ import java.net.URL;
  * Created by jackiezero on 2017/1/3.
  */
 public class AppiumTestBase {
-
-//        protected AndroidDriver driver;
-        protected AppiumDriver driver;
-
+    protected AppiumDriver driver;
+    private final static String filepath = new File(System.getProperty("user.dir"))+"\\build\\resources\\main\\conf";
+    private final String filename = "base.yaml";
+    private final String platform = (String) YamlUtils.LoadgetValue(filepath,filename,"androidCapability","deviceName");
 //    protected
 //    AppiumUtils el = new AppiumUtils();
 /**
@@ -28,7 +28,7 @@ public class AppiumTestBase {
  * @ appPackage
  * @ appActivity（启动）
  * */
-    protected   void initialization(String filepath,String filename,String platform,String appName) throws MalformedURLException {
+    protected   void initialization(String filename,String platform,String appName) throws MalformedURLException {
 
         File classRootPath=new File(System.getProperty("user.dir"));
         File appDir=new File(classRootPath,"Driver");

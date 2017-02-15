@@ -3,6 +3,7 @@ package Utils;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * Created by jackiezero on 2017/1/3.
  */
 public class AppiumUtils extends AppiumTestBase{
-
+    private static Logger logger = Logger.getLogger(AppiumUtils.class);
 public static MobileElement androidElementWait(WebDriver driver, By by){
     /**
      * An expectation for checking that an element is present on the DOM of a page and visible.
@@ -23,10 +24,17 @@ public static MobileElement androidElementWait(WebDriver driver, By by){
      * @param locator used to find the element
      * @return the WebElement once it is located and visible
      */
-    MobileElement element = (MobileElement)(new WebDriverWait(driver,60)).until(ExpectedConditions.visibilityOfElementLocated(by));
+//    MobileElement element = null;
+    try {
+        MobileElement  element = (MobileElement) (new WebDriverWait(driver, 60)).until(ExpectedConditions.visibilityOfElementLocated(by));
+        return element;
+    }catch (Exception e){
+        e.getCause();
+        logger.error(e);
+        return null;
+    }
 
-
-    return element;
+//    return element;
 }
 
 
