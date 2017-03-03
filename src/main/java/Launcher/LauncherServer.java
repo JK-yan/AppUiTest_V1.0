@@ -5,7 +5,7 @@ import Utils.AppiumUtils;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 
@@ -14,14 +14,13 @@ import java.net.MalformedURLException;
  */
 public class LauncherServer extends AppiumTestBase {
 
-    @BeforeTest
+    @Test
      public void run(){
-         String filepath = "E:\\Code\\AppUiTest_V1.0\\src\\main\\java\\conf";
+//         String filepath = "E:\\Code\\AppUiTest_V1.0\\src\\main\\java\\conf";
+         String filepath = "E:\\Code\\AppUiTest_V1.0\\src\\main\\resources\\";
          String filename = "base.yaml";
-         String platform = "AndroidDriver";
-         String appName = "erduo.apk";
          try {
-             initialization(filename,platform,appName);
+             initialization(filepath,filename);
 //             SwipeElementDirection left = SwipeElementDirection.valueOf();
              AppiumUtils.androidElementWait(driver, By.id("com.android.packageinstaller:id/permission_allow_button")).click();
 //             AndroidElement element = driver.findElement

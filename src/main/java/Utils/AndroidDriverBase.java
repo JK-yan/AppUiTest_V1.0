@@ -18,6 +18,7 @@ public class AndroidDriverBase{
     private static WebDriver drivers;
 
     public AndroidDriverBase(URL remoteAddress, Capabilities desiredCapabilities) {
+
         driver=new AndroidDriver<WebElement>(remoteAddress, desiredCapabilities);
     }
 

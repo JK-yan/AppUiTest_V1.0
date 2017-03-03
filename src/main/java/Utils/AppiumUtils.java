@@ -10,21 +10,66 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.sql.Time;
+import java.util.List;
+
 /**
  * Created by jackiezero on 2017/1/3.
  */
 public class AppiumUtils extends AppiumTestBase{
     private static Logger logger = Logger.getLogger(AppiumUtils.class);
-public static MobileElement androidElementWait(WebDriver driver, By by){
+    /**
+    * 根据定位参数条件选择定位方式
+     *@return element MobileElement 类型的控件
+    *
+     * @param driver
+     * @param controlInfo 定位条件
+     * @param time
+     */
+    public static MobileElement findElement(AppiumDriver driver, String controlInfo, Time time){
+        WebElement element ;
+        if (controlInfo.startsWith("//")){
+            element = driver.findElementByXPath(controlInfo);
+        }else if (controlInfo.contains(":id/") || controlInfo.contains(":string/")){
+            element = driver.findElementById(controlInfo);
+        }else {
+            element = driver.findElement("-android uiautomator",controlInfo);
+        }
+
+        return (MobileElement) element;
+    }
+    /**
+     * 根据定位参数条件选择定位方式
+     *@param controlInfo 定位条件
+     *@param driver
+     *@return elements MobileElement 类型的控件
+     *
+     */
+    public List findElements(AppiumDriver driver,String controlInfo){
+        List elements ;
+        if (controlInfo.startsWith("//")){
+            elements = driver.findElementsByXPath(controlInfo);
+        }else if (controlInfo.contains(":id/") || controlInfo.contains(":string/")){
+            elements = driver.findElementsById(controlInfo);
+        }else {
+            elements = driver.findElements("-android uiautomator",controlInfo);
+        }
+
+        return  elements;
+    }
+    public static waitFelement(AppiumDriver driver,String elementInfo, Time time){
+        findElement(driver,elementInfo,time);
+    return findElement(driver,elementInfo,time);
+    }
     /**
      * An expectation for checking that an element is present on the DOM of a page and visible.
      * Visibility means that the element is not only displayed but also has a height and width that is
      * greater than 0.
      *@author jackiezero
-     * @param locator used to find the element
+     * locator used to find the element
      * @return the WebElement once it is located and visible
      */
-//    MobileElement element = null;
+    public static MobileElement androidElementWait(WebDriver driver, By by){
     try {
         MobileElement  element = (MobileElement) (new WebDriverWait(driver, 60)).until(ExpectedConditions.visibilityOfElementLocated(by));
         return element;
@@ -33,8 +78,6 @@ public static MobileElement androidElementWait(WebDriver driver, By by){
         logger.error(e);
         return null;
     }
-
-//    return element;
 }
 
 

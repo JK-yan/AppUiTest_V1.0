@@ -23,15 +23,14 @@ public class YamlUtils {
     private static Logger logger = Logger.getLogger(YamlUtils.class);
 
 
-    public static Object Load(String filepath,String filename){
+    public static Object load(String filepath,String filename){
         Yaml yaml = new Yaml();
         File f=new File(filepath,filename);
-
-
         //读入文件
         Object result= null;
         try {
             result = yaml.load(new FileInputStream(f));
+
         } catch (FileNotFoundException e) {
             logger.error(e);
             e.printStackTrace();
@@ -41,16 +40,17 @@ public class YamlUtils {
 
     }
 
-    public static Object LoadgetValue(String filepath,String filename,String ...te){
+    public static Object loadGetValue(String filepath,String filename,String ...te){
 
-        LinkedHashMap aa= (LinkedHashMap) Load(filepath,filename);
+        LinkedHashMap aa= (LinkedHashMap) load(filepath,filename);
+
         for (int i=0;i<te.length-1;i++){
             aa = (LinkedHashMap) aa.get(te[i]);
         }
         aa.get(te[te.length-1]);
         return  aa.get(te[te.length-1]);
     }
-    public static List Loadall(String filepath,String filename){
+    public static List loadAll(String filepath,String filename){
         Yaml yaml = new Yaml();
         File f = new File(FileUtils.Path(filepath,filename));
         Iterable<Object> result = null;
@@ -73,8 +73,8 @@ public class YamlUtils {
 
         return list;
     }
-    public static Object Loadallgetvalue(String filepath,String filename,int a,String ...te){
-        LinkedHashMap aa= (LinkedHashMap) Loadall(filepath,filename).get(a);
+    public static Object loadAllGetValue(String filepath,String filename,int a,String ...te){
+        LinkedHashMap aa= (LinkedHashMap) loadAll(filepath,filename).get(a);
         for (int i=0;i<te.length-1;i++){
             aa = (LinkedHashMap) aa.get(te[i]);
         }
