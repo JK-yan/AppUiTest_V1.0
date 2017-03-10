@@ -28,6 +28,7 @@ public class AppiumTestBase {
      *根据读取文件中platformName的属性选择不同平台IOS or Android
      *
      */
+
     public void initialization(String filepath,String filename) throws MalformedURLException {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         LinkedHashMap capability= (LinkedHashMap) YamlUtils.loadGetValue(filepath,filename,"capability");

@@ -22,7 +22,7 @@ public class YamlUtilsTest {
     public void load() throws Exception {
         String filepath = "E:\\Code\\AppUiTest_V1.0\\src\\main\\java\\conf";
         String filename = "base.yaml";
-        YamlUtils.Load(filepath,filename);
+//        YamlUtils.Load(filepath,filename);
 
     }
 
@@ -30,7 +30,7 @@ public class YamlUtilsTest {
     public void loadgetValue() throws Exception {
         String filepath = "E:\\Code\\AppUiTest_V1.0\\src\\main\\java\\conf";
         String filename = "base.yaml";
-        YamlUtils.LoadgetValue(filepath,filename);
+//        YamlUtils.LoadgetValue(filepath,filename);
 
     }
 
