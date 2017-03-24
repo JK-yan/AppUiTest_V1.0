@@ -140,7 +140,7 @@ public class AppiumUtils extends AppiumTestBase{
     /**
      * This Method for swipe up
      *
-     * @author Young
+     * @author Jackie_yan
      * @param driver
      * @param during
      */
@@ -148,6 +148,8 @@ public class AppiumUtils extends AppiumTestBase{
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
         driver.swipe(width / 2, height * 3 / 4, width / 2, height / 4, during);
+//        TouchAction action = new TouchAction(driver);
+//        action.press(width / 2,height * 3 / 4).moveTo(width / 2, height / 4).release();
         // wait for page loading
     }
 

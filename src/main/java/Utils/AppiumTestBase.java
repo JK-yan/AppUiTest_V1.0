@@ -52,7 +52,7 @@ public class AppiumTestBase {
                     Object iterable = it.next();
                     desiredCapabilities.setCapability(iterable.toString(),iosCapability.get(iterable).toString());
                 }
-                driver = new IOSDriver<IOSElement>(new URL("http://127.0.0.1:4723/wd/hub"), desiredCapabilities);
+                driver = new IOSDriver<IOSElement>(new URL("http://127.0.0.1:4730/wd/hub"), desiredCapabilities);
                 break;
             }
         }
