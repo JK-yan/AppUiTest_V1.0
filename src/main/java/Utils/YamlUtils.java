@@ -13,10 +13,10 @@ import java.util.List;
 
 /**
  * Created by admin on 2016/12/28.
- * 读取Yaml文件
+ * 读取Yml文件
  * @ load读取所有单类
  * @ LoadgetValue根据key读取value
- * @ Loadall 读取多层次Yaml文件
+ * @ Loadall 读取多层次Yml文件
  * @ Loadallgetvalue根据List下标和key读取value
  */
 public class YamlUtils {

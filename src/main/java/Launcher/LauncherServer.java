@@ -9,25 +9,19 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import java.net.MalformedURLException;
-
 /**
  * Created by admin on 2017/2/9.
  */
 public class LauncherServer extends AppiumTestBase {
     String filepath = "E:\\Code\\AppUiTest_V1.0\\src\\main\\resources\\";
-    String filename = "base.yaml";
+    String filename = "Conf/base.yaml";
 
 
 
     @BeforeTest
      public void run(){
-         try {
-             initialization(filepath,filename);
+        initializationAppiumConfiguration(filepath,filename,1);
 //             Thread.sleep(4000);
-         } catch (MalformedURLException e) {
-             e.printStackTrace();
-         }
 
 //         AppiumUtils.waitFelement(driver,"new UiSelector().className(\"android.widget.TextView\").text(\"首页\")",10);
 //        while (AppiumUtils.findElement(driver,"new UiSelector().className(\"android.widget.TextView\").text(\"首页\")")==null){
@@ -57,6 +51,8 @@ public static void getAD(AndroidDriver driver,int a){
         }
         element.click();
         try {
+            Thread.sleep(1000);
+            AppiumUtils.swipeToUp(driver, 1000);
             Thread.sleep(5000);
             driver.pressKeyCode(4);
             a++;
@@ -71,7 +67,7 @@ public static void getAD(AndroidDriver driver,int a){
     @Test
     public void start() {
 //        driver.launchApp();
-        AppiumUtils.waitFelement(driver, "new UiSelector().className(\"android.widget.TextView\").text(\"首页\")", 10).click();
+        AppiumUtils.waitElementFind(driver, "new UiSelector().className(\"android.widget.TextView\").text(\"首页\")").click();
         System.out.println("..............................................");
         System.out.println(driver.getContext());
         System.out.println("..............................................");
@@ -79,7 +75,7 @@ public static void getAD(AndroidDriver driver,int a){
 
         int i = 0;
         int a =0;
-        while (i<10) {
+        while (i<40) {
 
             getAD((AndroidDriver) driver,a);
             AppiumUtils.swipeToUp((AndroidDriver) driver,500);

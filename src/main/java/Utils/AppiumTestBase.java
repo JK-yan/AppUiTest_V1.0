@@ -1,24 +1,30 @@
 package Utils;
 
-import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.ios.IOSElement;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 
 /**
- * Created by jackiezero on 2017/1/3.
- */
+ * Created by Jackie-yan on 2017/1/3.
+ **/
 public class AppiumTestBase {
     private static Logger logger = Logger.getLogger(AppiumTestBase.class);
-    protected AppiumDriver driver;
+    public static AndroidDriver<MobileElement> driver;
+    protected void initializationAppiumConfiguration(String filepath,String filename,int port){
+        String uri = "http://127.0.0.1:"+port+"/wd/hub";
+
+        try {
+            DesiredCapabilities a = setDesiredCapabilities(filepath,filename);
+            driver = new AndroidDriver<>(new URL(uri),a);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      *
@@ -28,33 +34,29 @@ public class AppiumTestBase {
      *根据读取文件中platformName的属性选择不同平台IOS or Android
      *
      */
-
-    public void initialization(String filepath,String filename) throws MalformedURLException {
+    private static DesiredCapabilities setDesiredCapabilities(String filepath,String filename) throws MalformedURLException {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         LinkedHashMap capability= (LinkedHashMap) YamlUtils.loadGetValue(filepath,filename,"capability");
-        for (Iterator it = capability.keySet().iterator(); it.hasNext(); ) {
-            Object iterable = it.next();
-            desiredCapabilities.setCapability(iterable.toString(),capability.get(iterable).toString());
+        for (Object iterable : capability.keySet()) {
+            desiredCapabilities.setCapability(iterable.toString(), capability.get(iterable).toString());
         }
         switch (capability.get("platformName").toString()){
             case "android":{
                 LinkedHashMap androidCapability= (LinkedHashMap) YamlUtils.loadGetValue(filepath,filename,"androidCapability");
-                for (Iterator it = androidCapability.keySet().iterator(); it.hasNext(); ) {
-                    Object iterable = it.next();
-                    desiredCapabilities.setCapability(iterable.toString(),androidCapability.get(iterable).toString());
-                }//                driver.findElement("-android uiautomator","");
-                driver =  new AndroidDriver<AndroidElement>(new URL("http://127.0.0.1:4723/wd/hub"), desiredCapabilities);
+                for (Object iterable : androidCapability.keySet()) {
+                    desiredCapabilities.setCapability(iterable.toString(), androidCapability.get(iterable).toString());
+                }//                driver.findElement("-android uiautomator",""); 4731 4725 4728 4733 4735
                 break;
             }
             case "ios":{
                 LinkedHashMap iosCapability= (LinkedHashMap) YamlUtils.loadGetValue(filepath,filename,"androidCapability");
-                for (Iterator it = iosCapability.keySet().iterator(); it.hasNext(); ) {
-                    Object iterable = it.next();
-                    desiredCapabilities.setCapability(iterable.toString(),iosCapability.get(iterable).toString());
+                for (Object iterable : iosCapability.keySet()) {
+                    desiredCapabilities.setCapability(iterable.toString(), iosCapability.get(iterable).toString());
                 }
-                driver = new IOSDriver<IOSElement>(new URL("http://127.0.0.1:4730/wd/hub"), desiredCapabilities);
                 break;
             }
         }
+        logger.info("appium初始化参数设置"+desiredCapabilities);
+        return desiredCapabilities;
     }
 }
