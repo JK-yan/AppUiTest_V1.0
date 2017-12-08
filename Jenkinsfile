@@ -1,24 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('ds') {
-      parallel {
-        stage('ds') {
-          steps {
-            mail(subject: 'asa', body: 'sasas')
-          }
-        }
-        stage('asa') {
-          steps {
-            sleep 1
-          }
-        }
-      }
-    }
-    stage('sasas') {
-      agent any
+    stage('checkout') {
       steps {
-        sleep 1
+        git(url: 'https://github.com/jackiezero/AppUiTest_V1.0.git', branch: 'master')
       }
     }
   }
