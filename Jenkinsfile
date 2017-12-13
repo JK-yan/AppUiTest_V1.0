@@ -15,5 +15,16 @@ pipeline {
         }
       }
     }
+    stage('docker') {
+      agent any
+      steps {
+        tool(name: 'docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool')
+      }
+    }
+    stage('ss') {
+      steps {
+        sh 'docker build'
+      }
+    }
   }
 }
