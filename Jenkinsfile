@@ -23,7 +23,7 @@ pipeline {
     }
     stage('ss') {
       steps {
-        sh 'docker build'
+        sh 'docker -v'
       }
     }
   }
